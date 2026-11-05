@@ -1,0 +1,76 @@
+.hero {
+  height: 100svh;
+  min-height: 520px;
+  padding: var(--frame);
+}
+
+.panel.topographic-flow {
+  border-radius: 28px;
+}
+
+.hero-pills {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.giant-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  pointer-events: none;
+}
+
+.giant {
+  --w: calc(100% - 2 * var(--gutter));
+  position: absolute;
+  bottom: 0;
+  left: var(--gutter);
+  width: var(--w);
+  height: auto;
+  color: var(--white);
+  transform: translateY(20%);
+}
+
+@media (max-aspect-ratio: 4/5) {
+  .giant {
+    --w: calc(100svh - 2 * var(--frame) - 96px - var(--gutter));
+    top: 96px;
+    bottom: auto;
+    left: 0;
+    transform: translateX(calc(var(--w) * 0.278 * 0.8)) rotate(90deg);
+    transform-origin: top left;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .giant {
+    animation: rise 1.2s var(--ease) 0.2s both;
+  }
+
+  @media (max-aspect-ratio: 4/5) {
+    .giant {
+      animation-name: slide-in;
+    }
+  }
+}
+
+@keyframes rise {
+  from {
+    translate: 0 70%;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    translate: -60% 0;
+  }
+}
+
+@media (max-width: 559px) {
+  .panel.topographic-flow {
+    border-radius: 22px;
+  }
+}

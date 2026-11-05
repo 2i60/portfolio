@@ -1,0 +1,27 @@
+.site-footer {
+  display: flex;
+  max-width: 1600px;
+  justify-content: space-between;
+  gap: 16px;
+  margin: clamp(80px, 12vw, 160px) auto 0;
+  padding: 24px calc(var(--gutter) + var(--frame)) 32px;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a:hover {
+  color: var(--red);
+}
+
+.site-footer a:focus-visible {
+  outline-color: var(--ink);
+}
+
+.copyleft {
+  display: inline-block;
+  transform: scaleX(-1);
+}

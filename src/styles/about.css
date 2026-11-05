@@ -1,0 +1,102 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding-top: clamp(28px, 4vw, 48px);
+  border-top: 1px solid var(--rule);
+}
+
+.about-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.about-portrait {
+  width: clamp(140px, 36vw, 200px);
+  height: auto;
+  flex: none;
+}
+
+.about-lede {
+  max-width: 22ch;
+  margin: 0;
+  font-size: clamp(30px, 4.4vw, 64px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.facts {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+}
+
+.facts dt {
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.facts dd {
+  margin: 2px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.contact {
+  margin-top: 40px;
+}
+
+.contact-label {
+  margin: 0 0 8px;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.contact-email {
+  color: var(--red);
+  font-size: clamp(24px, 2.6vw, 36px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease;
+}
+
+.contact-email:hover {
+  color: var(--ink);
+}
+
+.contact-email:focus-visible {
+  outline-color: var(--ink);
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 24px;
+  margin: 24px 0 0;
+}
+
+@media (min-width: 900px) {
+  .about-grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(32px, 5vw, 80px);
+  }
+
+  .about-intro {
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(24px, 3vw, 48px);
+  }
+
+  .about-portrait {
+    width: clamp(160px, 16vw, 260px);
+  }
+
+  .about-side {
+    padding-top: 12px;
+  }
+}

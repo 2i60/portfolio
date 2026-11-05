@@ -1,0 +1,139 @@
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("../assets/fonts/instrument-sans-latin.woff2") format("woff2-variations");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --page: #f1eee7;
+  --red: #ce0110;
+  --red-ink: #6b000a;
+  --white: #ffffff;
+  --ink: #1f0a0c;
+  --ink-soft: #5e4a4a;
+  --rule: rgba(31, 10, 12, 0.16);
+  --text-soft: rgba(255, 246, 240, 0.86);
+
+  --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --gutter: clamp(16px, 3vw, 44px);
+  --frame: 12px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-jelly: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  color-scheme: light;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--page);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+svg {
+  display: block;
+}
+
+::selection {
+  background: var(--page);
+  color: var(--red);
+}
+
+:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--red-ink);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform 0.2s var(--ease);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (max-width: 559px) {
+  :root {
+    --frame: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+html {
+  scrollbar-color: var(--red) var(--page);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--page);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid var(--page);
+  border-radius: 999px;
+  background: var(--red);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--red-ink);
+}
