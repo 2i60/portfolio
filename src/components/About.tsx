@@ -37,7 +37,7 @@ export function About() {
             <p className="contact-links">
               <ExternalLink href={LINKS.github}>GitHub</ExternalLink>
               <ExternalLink href={LINKS.discord}>Discord</ExternalLink>
-              <ExternalLink href={LINKS.x}>X</ExternalLink>
+              <ExternalLink href={LINKS.x} label="X">𝕏</ExternalLink>
             </p>
           </div>
         </div>
