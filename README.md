@@ -11,3 +11,4 @@ my personal portfolio using react, ts, and vite
 npm ci
 npm run dev
 ```
+copyleft nata
