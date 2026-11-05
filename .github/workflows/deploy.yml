@@ -1,0 +1,67 @@
+name: Deploy to waow.lol
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: waow-production
+  cancel-in-progress: true
+
+jobs:
+  deployment:
+    name: Verify production deployment
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - name: Wait for homelab deployment and verify live page
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          import time
+          import urllib.request
+
+          sha = os.environ["EXPECTED_SHA"]
+          deadline = time.monotonic() + 660
+
+          def fetch(path):
+              request = urllib.request.Request(
+                  "https://waow.lol" + path,
+                  headers={"Cache-Control": "no-cache", "User-Agent": "waow-deployment-check"},
+              )
+              with urllib.request.urlopen(request, timeout=15) as response:
+                  return response.read()
+
+          while time.monotonic() < deadline:
+              try:
+                  result = json.loads(fetch("/deployments/" + sha + ".json?t=" + str(time.time_ns())))
+              except Exception as error:
+                  print("Waiting for deployment result:", error, flush=True)
+                  time.sleep(15)
+                  continue
+              if result.get("sha") != sha:
+                  raise SystemExit("Deployment result has an unexpected commit")
+              if result.get("state") == "failure":
+                  raise SystemExit("Homelab build/deployment failed. Previous site remains live.")
+              if result.get("state") == "success":
+                  try:
+                      page = fetch("/?deployment=" + sha + "&t=" + str(time.time_ns()))
+                      if hashlib.sha256(page).hexdigest() == result.get("html_sha256"):
+                          print("Verified live deployment of " + sha)
+                          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as summary:
+                              summary.write("Deployed and verified [" + sha[:7] + "](https://github.com/2i60/portfolio/commit/" + sha + ") on https://waow.lol\n")
+                          break
+                      print("Waiting for the public page to match the deployed build", flush=True)
+                  except Exception as error:
+                      print("Waiting for public page:", error, flush=True)
+              time.sleep(15)
+          else:
+              raise SystemExit("Deployment was not verified within 11 minutes. Check the homelab updater.")
+          PY
+
