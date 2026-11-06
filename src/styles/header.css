@@ -141,7 +141,7 @@
 }
 
 @media (max-width: 559px) {
-  .nav a:nth-child(-n + 2) {
+  .nav a:nth-child(-n + 3) {
     display: none;
   }
 }

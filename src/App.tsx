@@ -4,6 +4,7 @@ import { Experience } from "./components/Experience";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { Showcase } from "./components/Showcase";
 
 const TOP_ID = "top";
 
@@ -19,6 +20,7 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         <Hero id={TOP_ID} onPillHost={setHeroPillHost} />
         <Experience heroPillHost={heroPillHost} />
+        <Showcase />
         <About />
       </main>
       <Footer topId={TOP_ID} />

@@ -29,6 +29,7 @@ export function Header({ heroId }: HeaderProps) {
 
       <nav className="nav" aria-label="Primary">
         <a href="#experience">Experience</a>
+        <a href="#work">Work</a>
         <a href="#about">About</a>
         <a
           className="nav-icon"

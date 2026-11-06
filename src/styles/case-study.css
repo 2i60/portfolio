@@ -1,0 +1,339 @@
+.case {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: var(--red);
+  color: var(--white);
+  clip-path: inset(var(--frame) round 28px);
+}
+
+.case::backdrop {
+  background: transparent;
+}
+
+.case-scroll {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--white) var(--red);
+}
+
+.case-bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: calc(var(--frame) + 14px) calc(var(--frame) + var(--gutter)) 18px;
+  background: linear-gradient(var(--red) 72%, rgba(206, 1, 16, 0));
+}
+
+.case-toggle {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+}
+
+.case-toggle button {
+  min-height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--white);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.case-toggle button[aria-pressed="true"] {
+  background: var(--white);
+  color: var(--red);
+}
+
+.case-close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--red);
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-jelly);
+}
+
+.case-close:hover {
+  transform: rotate(90deg);
+}
+
+.case-close svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.case-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 calc(var(--frame) + var(--gutter)) calc(var(--frame) + 72px);
+}
+
+.case[open] .case-inner {
+  animation: case-in 0.7s var(--ease) 0.25s both;
+}
+
+@keyframes case-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+.case-hero {
+  padding: clamp(24px, 6vw, 80px) 0 clamp(48px, 8vw, 120px);
+}
+
+.case-title {
+  display: flex;
+  align-items: center;
+  gap: 0.14em;
+  margin: 0 0 clamp(24px, 3vw, 40px);
+  font-size: clamp(56px, 11vw, 168px);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 0.85;
+}
+
+.case-logo {
+  width: 0.78em;
+  height: 0.78em;
+  flex: none;
+}
+
+.case-lede {
+  max-width: 22ch;
+  margin: 0;
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.case-intro {
+  max-width: 46ch;
+  margin: 20px 0 0;
+  color: var(--text-soft);
+  font-size: clamp(16px, 1.4vw, 19px);
+}
+
+.case-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px clamp(28px, 4vw, 64px);
+  margin: clamp(28px, 4vw, 48px) 0 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.case-facts dt {
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.case-facts dd {
+  margin: 2px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.case-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: clamp(24px, 3vw, 48px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-phone {
+  width: 100%;
+  max-width: 330px;
+  margin: 0 auto;
+  filter: drop-shadow(0 30px 40px rgba(60, 0, 6, 0.45));
+}
+
+.case-card-value {
+  margin-top: auto;
+  color: var(--text-soft);
+  font-size: 15px;
+}
+
+.case-system {
+  margin-top: clamp(80px, 12vw, 180px);
+  padding-top: clamp(28px, 4vw, 48px);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.case-system-title {
+  margin: 0 0 clamp(28px, 4vw, 48px);
+  font-size: clamp(30px, 3.4vw, 52px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.case-system-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.case-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px;
+  border-radius: 22px;
+  background: var(--red-ink);
+}
+
+.case-card-label {
+  color: var(--text-soft);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.case-specimen {
+  font-family: "Gully VF", var(--font-body);
+  font-size: 96px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.case-swatches {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+.case-swatches li {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.case-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 9px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.case-swatches code {
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.case-shape {
+  display: flex;
+  gap: 10px;
+}
+
+.case-shape span {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: var(--white);
+}
+
+.case-shape span + span {
+  background: transparent;
+  outline: 1px solid rgba(255, 255, 255, 0.6);
+  outline-offset: -1px;
+}
+
+.case-mascot {
+  color: var(--white);
+}
+
+.case-mascot .ls-mascot {
+  color: var(--white);
+}
+
+.case-back {
+  display: block;
+  margin: clamp(64px, 8vw, 120px) auto 0;
+  padding: 16px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--red);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-jelly);
+}
+
+.case-back:hover {
+  transform: scale(1.04);
+}
+
+.case :focus-visible {
+  outline-color: var(--white);
+}
+
+.case-toggle button:focus-visible,
+.case-close:focus-visible,
+.case-back:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
+}
+
+@media (min-width: 900px) {
+  .case-system-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .case-system-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 559px) {
+  .case {
+    clip-path: inset(var(--frame) round 22px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case[open] .case-inner {
+    animation: none;
+  }
+}
